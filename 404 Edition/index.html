@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrbitAuth | 404 Lost in Space</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="orbit-wrapper">
+        <!-- Tema Kontrolleri (LumaAuth'taki gibi ama uzay renkleri) -->
+        <div class="window-controls">
+            <div class="dot red" onclick="setTheme('')" title="Supernova Red"></div>
+            <div class="dot yellow" onclick="setTheme('theme-blue')" title="Nebula Blue"></div>
+            <div class="dot green" onclick="setTheme('theme-green')" title="Toxic Green"></div>
+        </div>
+
+        <div class="orbit-card error-card">
+            <!-- LEFT SIDE: THE VOID / BLACK HOLE -->
+            <div class="visual-side">
+                <div class="space-bg"></div>
+
+                <!-- Kara Delik Görseli -->
+                <div class="wormhole-container broken-wormhole" id="wormholeTrigger">
+                    <div class="accretion-disk"></div>
+                    <div class="event-horizon">
+                        <div class="core-glow"></div>
+                    </div>
+                    <!-- Uzayda savrulan parçacıklar -->
+                    <div class="particle p1"></div>
+                    <div class="particle p2"></div>
+                    <div class="particle p3"></div>
+                </div>
+
+                <div class="hint-text">Signal Lost</div>
+            </div>
+
+            <!-- RIGHT SIDE: 404 CONTENT -->
+            <div class="form-side" id="formSide">
+                <div class="dark-overlay hidden" id="darkOverlay"></div>
+
+                <div class="form-content visible">
+                    <div class="form-header error-header">
+                        <!-- Devasa 404 yazısı ve uzay efekti -->
+                        <h1 class="glitch-text" data-text="404">404</h1>
+                        <h2>Lost in Space</h2>
+                        <p>The coordinates you entered do not exist in this galaxy. The page may have drifted into a
+                            black hole or been moved to another sector.</p>
+                    </div>
+
+                    <div class="error-actions">
+                        <!-- Kara deliğe tıklayınca veya butona basınca geri dönüş -->
+                        <button class="btn-primary" onclick="restoreOrbit()">
+                            <span class="btn-text">Return to Base</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                        <a href="#" class="btn-secondary">Contact Command</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

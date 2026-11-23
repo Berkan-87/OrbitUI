@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrbitAuth | Pilot Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="orbit-wrapper">
+
+        <!-- Tema Kontrolleri -->
+        <div class="window-controls">
+            <div class="dot red" onclick="setTheme('')" title="Supernova Red"></div>
+            <div class="dot yellow" onclick="setTheme('theme-blue')" title="Nebula Blue"></div>
+            <div class="dot green" onclick="setTheme('theme-green')" title="Toxic Green"></div>
+        </div>
+
+        <div class="orbit-card profile-card">
+            <!-- LEFT SIDE: AVATAR & STATS -->
+            <div class="visual-side">
+                <div class="space-bg"></div>
+
+                <!-- Avatar ve Yörünge -->
+                <div class="avatar-container">
+                    <div class="avatar-ring"></div>
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Felix&backgroundColor=transparent"
+                        alt="Astronaut Avatar" class="avatar-img" />
+                </div>
+
+                <div class="profile-info">
+                    <h2 class="operator-name">Cmdr. Shepard</h2>
+                    <p class="operator-rank">Fleet Admiral</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-val">14</span>
+                            <span class="stat-lbl">Missions</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-val">98%</span>
+                            <span class="stat-lbl">Accuracy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE: SETTINGS FORM -->
+            <div class="form-side">
+                <div class="form-content visible">
+                    <div class="form-header">
+                        <h1>System Settings</h1>
+                        <p>Update your neural signature and ship preferences.</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); alert('Profile Updated. (Demo)');">
+                        <div class="input-group">
+                            <label>Operator Name</label>
+                            <input type="text" value="Cmdr. Shepard" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label>Comm Link (Email)</label>
+                            <input type="email" value="shepard@normandy.sr2" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label>New Access Code (Leave blank to keep current)</label>
+                            <input type="password" placeholder="••••••••" />
+                        </div>
+
+                        <!-- Sistem Modu (Dark/Light) Anahtarı -->
+                        <div class="setting-toggle">
+                            <div class="toggle-info">
+                                <span class="toggle-title">Visual Interface</span>
+                                <span class="toggle-desc">Switch between Night Ops (Dark) and Day Ops (Light)</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="modeToggle" onchange="toggleLightMode()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                            <button type="button" class="btn-danger">Deauthorize</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

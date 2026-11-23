@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrbitAuth | Pricing Plans</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="orbit-wrapper">
+        <!-- Tema Kontrolleri -->
+        <div class="window-controls">
+            <div class="dot red" onclick="setTheme('')" title="Supernova Red"></div>
+            <div class="dot yellow" onclick="setTheme('theme-blue')" title="Nebula Blue"></div>
+            <div class="dot green" onclick="setTheme('theme-green')" title="Toxic Green"></div>
+        </div>
+
+        <!-- Pricing Header -->
+        <div class="pricing-header">
+            <h1>Choose Your Orbit</h1>
+            <p>Select the clearance level that fits your mission. Upgrade or downgrade anytime.</p>
+        </div>
+
+        <!-- Pricing Cards Container -->
+        <div class="pricing-cards">
+
+            <!-- Card 1: Cadet -->
+            <div class="price-card">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <h3>Cadet</h3>
+                    <div class="price"><span>$</span>9<span>/mo</span></div>
+                    <p class="desc">For solo explorers starting their journey.</p>
+                    <ul class="features">
+                        <li>✓ 1 Star System</li>
+                        <li>✓ Basic Telemetry</li>
+                        <li>✓ Community Support</li>
+                    </ul>
+                    <button class="btn-primary">Select Cadet</button>
+                </div>
+            </div>
+
+            <!-- Card 2: Commander (Popular) -->
+            <div class="price-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <h3>Commander</h3>
+                    <div class="price"><span>$</span>29<span>/mo</span></div>
+                    <p class="desc">For squad leaders commanding the fleet.</p>
+                    <ul class="features">
+                        <li>✓ 5 Star Systems</li>
+                        <li>✓ Advanced Telemetry</li>
+                        <li>✓ Priority Support</li>
+                        <li>✓ Custom Fleet Colors</li>
+                    </ul>
+                    <button class="btn-primary">Select Commander</button>
+                </div>
+            </div>
+
+            <!-- Card 3: Fleet Admiral -->
+            <div class="price-card">
+                <div class="card-glow"></div>
+                <div class="card-content">
+                    <h3>Fleet Admiral</h3>
+                    <div class="price"><span>$</span>99<span>/mo</span></div>
+                    <p class="desc">For those who rule the entire galaxy.</p>
+                    <ul class="features">
+                        <li>✓ Unlimited Systems</li>
+                        <li>✓ Real-time Quantum Data</li>
+                        <li>✓ Dedicated AI Assistant</li>
+                        <li>✓ 24/7 Holographic Support</li>
+                    </ul>
+                    <button class="btn-primary">Select Admiral</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

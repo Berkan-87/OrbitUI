@@ -1,0 +1,468 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+
+/* =========================================
+   THEMES
+   ========================================= */
+:root {
+  --bg-color: #050508;
+  --card-bg: rgba(10, 10, 15, 0.7);
+  --text-main: #ffffff;
+  --text-muted: #8b8b9f;
+  --accent-color: #ff3366;
+  --accent-glow: rgba(255, 51, 102, 0.5);
+  --accent-rgb: 255, 51, 102;
+  --input-bg: rgba(20, 20, 30, 0.8);
+  --border-color: rgba(255, 51, 102, 0.3);
+}
+body.theme-blue {
+  --accent-color: #00d2ff;
+  --accent-glow: rgba(0, 210, 255, 0.5);
+  --accent-rgb: 0, 210, 255;
+  --border-color: rgba(0, 210, 255, 0.3);
+}
+body.theme-green {
+  --accent-color: #00ff88;
+  --accent-glow: rgba(0, 255, 136, 0.5);
+  --accent-rgb: 0, 255, 136;
+  --border-color: rgba(0, 255, 136, 0.3);
+}
+
+/* =========================================
+   BASE & LAYOUT
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', sans-serif;
+}
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+  transition: background-color 0.8s ease;
+}
+.orbit-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  z-index: 10;
+}
+
+.window-controls {
+  position: absolute;
+  top: -30px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.dot:hover {
+  transform: scale(1.2);
+}
+.dot.red {
+  background: #ff3366;
+  box-shadow: 0 0 10px #ff3366;
+}
+.dot.yellow {
+  background: #00d2ff;
+  box-shadow: 0 0 10px #00d2ff;
+}
+.dot.green {
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.orbit-card {
+  display: flex;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 650px;
+  box-shadow:
+    0 0 50px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(var(--accent-rgb), 0.1);
+  transition:
+    border-color 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* =========================================
+   LEFT SIDE: WORMHOLE
+   ========================================= */
+.visual-side {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #000;
+}
+.space-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+.wormhole-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.accretion-disk {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+  animation: spin 4s linear infinite;
+  box-shadow:
+    0 0 30px var(--accent-glow),
+    inset 0 0 30px var(--accent-glow);
+  transition: all 0.5s ease;
+}
+.event-horizon {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: #000;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 20px #000,
+    0 0 20px var(--accent-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.core-glow {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0.3;
+  animation: pulseCore 2s infinite alternate;
+}
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-color);
+}
+.p1 {
+  top: 10%;
+  left: 20%;
+  animation: orbit 3s linear infinite;
+}
+.p2 {
+  bottom: 20%;
+  right: 10%;
+  animation: orbit 5s linear infinite reverse;
+}
+.p3 {
+  top: 50%;
+  left: 0%;
+  animation: orbit 4s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulseCore {
+  100% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+.wormhole-container.engaged .accretion-disk {
+  transform: scale(3);
+  opacity: 0;
+  transition: all 1s ease-in;
+}
+.wormhole-container.engaged .event-horizon {
+  transform: scale(5);
+  opacity: 0;
+  transition: all 0.8s ease-in;
+}
+.hint-text {
+  position: absolute;
+  bottom: 30px;
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 2px;
+  animation: pulseText 2s infinite;
+  text-transform: uppercase;
+}
+@keyframes pulseText {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+    color: var(--accent-color);
+  }
+}
+
+/* =========================================
+   RIGHT SIDE: FORM
+   ========================================= */
+.form-side {
+  flex: 1.1;
+  position: relative;
+  background: transparent;
+}
+.dark-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-color);
+  z-index: 5;
+  transition:
+    opacity 1s ease,
+    visibility 1s ease;
+}
+.dark-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.form-content {
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(10px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 6;
+  position: relative;
+}
+.form-side.visible .form-content {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+.form-header h1 {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.form-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.input-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+.input-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--input-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.input-group input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.2);
+  background: rgba(0, 0, 0, 0.5);
+}
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.password-toggle:hover {
+  opacity: 1;
+}
+
+/* Password Strength (Uzay Temalı) */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.password-strength.active {
+  opacity: 1;
+}
+.strength-bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.strength-bar.weak {
+  background: #ff3366;
+  box-shadow: 0 0 10px #ff3366;
+}
+.strength-bar.medium {
+  background: #ffbd2e;
+  box-shadow: 0 0 10px #ffbd2e;
+}
+.strength-bar.strong {
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+}
+.strength-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+.remember-me input[type='checkbox'] {
+  accent-color: var(--accent-color);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.remember-me a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  background: var(--accent-color);
+  color: #000;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+.btn-arrow {
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+.btn-primary:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+.form-footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 25px;
+}
+.form-footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.form-footer a:hover {
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+@media (max-width: 850px) {
+  .orbit-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .visual-side {
+    min-height: 300px;
+  }
+  .form-content {
+    padding: 40px 25px;
+  }
+}

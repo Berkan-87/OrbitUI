@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrbitAuth | Initiate Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="orbit-wrapper">
+
+        <div class="window-controls">
+            <div class="dot red" onclick="setTheme('')" title="Supernova Red"></div>
+            <div class="dot yellow" onclick="setTheme('theme-blue')" title="Nebula Blue"></div>
+            <div class="dot green" onclick="setTheme('theme-green')" title="Toxic Green"></div>
+        </div>
+
+        <div class="orbit-card">
+            <!-- LEFT SIDE: THE WORMHOLE -->
+            <div class="visual-side">
+                <div class="space-bg"></div>
+
+                <div class="wormhole-container" id="wormholeTrigger">
+                    <div class="accretion-disk"></div>
+                    <div class="event-horizon">
+                        <div class="core-glow"></div>
+                    </div>
+                    <div class="particle p1"></div>
+                    <div class="particle p2"></div>
+                    <div class="particle p3"></div>
+                </div>
+
+                <div class="hint-text">Initiate Protocol</div>
+            </div>
+
+            <!-- RIGHT SIDE: REGISTER FORM -->
+            <div class="form-side" id="formSide">
+                <div class="dark-overlay" id="darkOverlay"></div>
+
+                <div class="form-content">
+                    <div class="form-header">
+                        <h1>Create Profile</h1>
+                        <p>Register your neural signature to join the fleet.</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); alert('Profile Created. Welcome to the Fleet. (Demo)');">
+                        <div class="input-group">
+                            <label>Operator Name</label>
+                            <input type="text" placeholder="Cmdr. Shepard" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label>Comm Link (Email)</label>
+                            <input type="email" placeholder="shepard@normandy.sr2" required />
+                        </div>
+
+                        <div class="input-group">
+                            <label>Access Code (Password)</label>
+                            <input type="password" id="passwordInput" placeholder="••••••••" required
+                                oninput="checkPasswordStrength()" />
+                            <span class="password-toggle" onclick="togglePassword()">👁️</span>
+                        </div>
+
+                        <!-- Uzay Temalı Şifre Gücü Göstergesi -->
+                        <div class="password-strength" id="strengthMeter">
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <div class="strength-bar"></div>
+                            <span class="strength-text" id="strengthText">Access Level: N/A</span>
+                        </div>
+
+                        <div class="input-group" style="margin-top: 25px;">
+                            <label>Confirm Access Code</label>
+                            <input type="password" placeholder="••••••••" required />
+                        </div>
+
+                        <label class="remember-me">
+                            <input type="checkbox" required /> I accept the <a href="#">Orbit Protocols</a>
+                        </label>
+
+                        <button type="submit" class="btn-primary" style="margin-top: 10px;">
+                            <span class="btn-text">Initialize</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+
+                    <div class="form-footer">
+                        <p>Already have clearance? <a href="#">Log In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
